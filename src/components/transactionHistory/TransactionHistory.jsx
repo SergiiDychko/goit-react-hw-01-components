@@ -1,4 +1,3 @@
-import { type } from '@testing-library/user-event/dist/type';
 import PropTypes from 'prop-types';
 import css from './TransactionHistory.module.css';
 
@@ -12,7 +11,6 @@ export const TransactionHistory = ({ items }) => {
           <th>CURRENCY</th>
         </tr>
       </thead>
-
       <tbody>
         {items.map(({ type, amount, currency, id }) => (
           <Transaction
@@ -27,8 +25,17 @@ export const TransactionHistory = ({ items }) => {
   );
 };
 
+TransactionHistory.propTypes = PropTypes.arrayOf(
+  PropTypes.shape({
+    type: PropTypes.string.isRequired,
+    amount: PropTypes.number.isRequired,
+    currency: PropTypes.string.isRequired,
+  }).isRequired
+).isRequired;
+  
+
 const Transaction = ({ type, amount, currency }) => {
-	return (
+  return (
     <tr>
       <td>{type.charAt(0).toUpperCase() + type.slice(1)}</td>
       <td>{amount}</td>
@@ -37,4 +44,8 @@ const Transaction = ({ type, amount, currency }) => {
   );
 };
 
-
+Transaction.propTypes = PropTypes.shape({
+  type: PropTypes.string.isRequired,
+  amount: PropTypes.number.isRequired,
+  currency: PropTypes.string.isRequired,
+}).isRequired;
