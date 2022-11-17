@@ -11,7 +11,11 @@ export const Statistics = ({ stats, title }) => {
   return (
     <section className={css.statistics}>
       <h2 className={css.title}>{title}</h2>
-      <StatList list={stats} />
+      <ul className={css.statList}>
+        {stats.map(el => (
+          <StatItem item={el} key={el.id} />
+        ))}
+      </ul>
     </section>
   );
 };
@@ -27,27 +31,16 @@ Statistics.propTypes = {
   ).isRequired,
 };
 
-const StatList = ({ list }) => {
+const StatItem = ({ item }) => {
   return (
-    <ul className={css.statList}>
-      {list.map(el => (
-        <li
-          key={el.id}
-          className={css.item}
-          style={{ backgroundColor: getRandomHexColor() }}
-        >
-          <span className={css.label}>{el.label}</span>
-          <span className={css.percentage}>{el.percentage}%</span>
-        </li>
-      ))}
-    </ul>
+    <li className={css.item} style={{ backgroundColor: getRandomHexColor() }}>
+      <span className={css.label}>{item.label}</span>
+      <span className={css.percentage}>{item.percentage}%</span>
+    </li>
   );
 };
 
-StatList.propTypes = PropTypes.arrayOf(
-  PropTypes.shape({
-    id: PropTypes.string.isRequired,
+StatItem.propTypes = PropTypes.shape({
     label: PropTypes.string.isRequired,
     percentage: PropTypes.number.isRequired,
-  }).isRequired
-).isRequired;
+  }).isRequired;
