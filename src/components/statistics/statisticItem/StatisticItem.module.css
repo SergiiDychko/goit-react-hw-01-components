@@ -1,0 +1,14 @@
+.item {
+	min-width: 50px;
+  padding: 10px;
+  text-align: center;
+	color: white;
+}
+.label {
+  display: block;
+  font-size: 12px;
+}
+.percentage {
+  display: block;
+  font-weight: 700;
+}
