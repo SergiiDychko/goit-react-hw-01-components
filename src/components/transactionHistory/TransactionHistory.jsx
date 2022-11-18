@@ -25,13 +25,15 @@ export const TransactionHistory = ({ items }) => {
   );
 };
 
-TransactionHistory.propTypes = PropTypes.arrayOf(
-  PropTypes.shape({
-    type: PropTypes.string.isRequired,
-    amount: PropTypes.number.isRequired,
-    currency: PropTypes.string.isRequired,
-  }).isRequired
-).isRequired;
+TransactionHistory.propTypes = {
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      type: PropTypes.string.isRequired,
+      amount: PropTypes.string.isRequired,
+      currency: PropTypes.string.isRequired,
+    }).isRequired
+  ).isRequired
+};
   
 
 const Transaction = ({ type, amount, currency }) => {
@@ -44,8 +46,8 @@ const Transaction = ({ type, amount, currency }) => {
   );
 };
 
-Transaction.propTypes = PropTypes.shape({
+Transaction.propTypes = {
   type: PropTypes.string.isRequired,
-  amount: PropTypes.number.isRequired,
+  amount: PropTypes.string.isRequired,
   currency: PropTypes.string.isRequired,
-}).isRequired;
+};
